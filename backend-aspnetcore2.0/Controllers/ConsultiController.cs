@@ -3,6 +3,7 @@ using Woa.ApiModels;
 using Woa.Data;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Woa.Controllers
 {
@@ -22,5 +23,8 @@ namespace Woa.Controllers
         [ProducesResponseType(typeof(ConsultoContract), 200)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public IActionResult Put([FromBody]ConsultoContract consulto) => Store(consulto.ToDomain(), EntityState.Modified);
+
+        [HttpDelete("{id}")]
+        public void Delete(int id) => Remove(Context.Consulti.SingleOrDefault(x => x.ID == id));
     }
 }

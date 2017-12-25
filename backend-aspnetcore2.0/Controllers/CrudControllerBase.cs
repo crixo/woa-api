@@ -34,5 +34,21 @@ namespace Woa.Controllers
                 return BadRequest(new ApiResponse { Status = false, ErrorMessage = exp.Message });
             }
         }
+
+
+        protected void Remove<TEntity>(TEntity entity) where TEntity : class
+        {
+            if (entity == null) return;
+
+            try
+            {
+                Context.Entry(entity).State = EntityState.Deleted;
+                Context.SaveChanges();
+            }
+            catch (Exception exp)
+            {
+                Logger.LogError(exp.Message);
+            }
+        }
     }
 }
