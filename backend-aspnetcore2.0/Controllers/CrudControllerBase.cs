@@ -17,7 +17,8 @@ namespace Woa.Controllers
         {
             Context = context;
             Logger = logger;
-            Logger.LogInformation(typeof(TController).Name);
+            var t = typeof(TController).Name;
+            Logger.LogInformation(t);
         }
 
         protected IActionResult Store<TEntity>(TEntity entity, EntityState state) where TEntity : class
