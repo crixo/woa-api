@@ -1,3 +1,5 @@
 ﻿docker build -t webprofessor/woa-api:1.0 .
 ##docker run -it --rm -p 8000:80 -v C:/Temp/woa:/woa --name woa-core2.0-mvc_sample woa-core2.0-mvc
 docker run -p 8001:80 -v /Users/cristiano/Lavori/woa/woa-docker/woa-api:/woa --restart=always --name woa-api webprofessor/woa-api:1.0
+
+docker tag webprofessor/woa-api:1.0 cloud.canister.io:5000/crixo/woa-api:1.0
