@@ -3,3 +3,11 @@
 docker run -p 8001:80 -v /Users/cristiano/Lavori/woa/woa-docker/woa-api:/woa --restart=always --name woa-api webprofessor/woa-api:1.0
 
 docker tag webprofessor/woa-api:1.0 cloud.canister.io:5000/crixo/woa-api:1.0
+
+docker build -t webprofessor/woa-api-sample:1.0 -f Dockerfile.sample .
+docker run -p 9001:80 --rm -d --name woa-api-sample webprofessor/woa-api-sample:1.0
+docker exec -t -i woa-api-sample /bin/bash
+
+docker tag webprofessor/woa-api-sample:1.0 registry.heroku.com/woa-api-sample/web
+heroku container:login
+docker push registry.heroku.com/woa-api-sample/web
