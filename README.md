@@ -1,3 +1,3 @@
 # woa-api
 
-https://travis-ci.org/crixo/woa-api.svg?branch=master
+<img src="https://travis-ci.org/crixo/woa-api.svg?branch=master" />
