@@ -1,3 +1,3 @@
 # woa-api
 
-<img src="https://travis-ci.org/crixo/woa-api.svg?branch=master" />
+[![Build Status](https://travis-ci.org/crixo/woa-api.svg?branch=master)](https://travis-ci.org/crixo/woa-api)
