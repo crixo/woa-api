@@ -1,3 +1,5 @@
+
+# https://sebest.github.io/post/using-travis-ci-to-build-docker-images/
 sudo: required
 
 services:
@@ -24,7 +26,5 @@ after_success:
   - export TAG=latest
   #- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker build -f Dockerfile -t $REPO:$COMMIT .
-  #- docker tag webprofessor/woa-api:1.0 cloud.canister.io:5000/crixo/woa-api:1.0
-  #- docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
   - docker push cloud.canister.io:5000/crixo/$REPO:$TAG
