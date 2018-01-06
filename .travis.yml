@@ -1,6 +1,29 @@
+sudo: required
+
+services:
+  - docker
+
 language: csharp
+
 mono: none
+
 dotnet: 2.0.0
+
+env:
+  global:
+    - secure: Lav6GWq9I6B/NZP5O30ees47cqeIKXZCVoHqhgCoxOVoJqFB2ZzeTO8xHbU2rd1etMgyDOEV+wJzriPgjgONyhDgMAHnNYgqjtSVcbdmvl86Gl5pGeyfbkcAzuigoaL6mmUF2tHmHsxxtQwMZkuYB6JMQE1XBpy9wpjZIZpdDB29FCqdnxE8rv2UJsEwJsGIw/iLCcexYgoAkk4BXpNTYOvKRBysDG5mbZmHR83wcBPBI6bHP3OqpiWWXdpTR/ddsDkGhIR6FbaxPbIvb/5gPUwci2fHhH5S4bM3OidMSqX4Y2zirrGlUXSBrwZWZEU7MAL/O47Evr/d5GU+2MUhYh//HVO5qSeaR+aeuhn1+Bl9ybVNnsRzE2RaaeX3sShODgrQggTFPsHxiKHTPDdJ3pg6+tDqTa0eNeOmvCm4y1bmrYM5Rc6wkAyDXkd1ICAH1AcwFNXXDOXjNZyZiXxwBPft54z6pffCAoR9rCtG6XAPYYlslQ7EbwjYyFusUkDKEm0oelX5JH8EM7yEJAf4ezUZlbZN2mb3J4CGZ8AulG0xGjzp3y+8WS0PNUOzNZNlyYqdGUeGivVIUq5B131DjiSQlz9ZhHGnYEDvS71FdVxaQ96aybsIrC7PDzl3+jwBxo7zt6MzWqv00SbyLmtbCVITEWajSOprnkm7SSMuCW4= #CANISTER_PWD
+    - COMMIT=${TRAVIS_COMMIT::8}
 script:
   - dotnet restore
   - dotnet build ./backend-aspnetcore2.0/
+
+after_success:
+  - docker login -u=crixo -p=$CANISTER_PWD cloud.canister.io:5000
+  - export REPO=woa-api
+  - export TAG=latest
+  #- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f ./backend-aspnetcore2.0/Dockerfile -t $REPO:$COMMIT .
+  - docker tag webprofessor/woa-api:1.0 cloud.canister.io:5000/crixo/woa-api:1.0
+  #- docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
+  - docker push cloud.canister.io:5000/crixo/$REPO:$TAG
