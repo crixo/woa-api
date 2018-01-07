@@ -1,30 +1,29 @@
-
-# https://sebest.github.io/post/using-travis-ci-to-build-docker-images/
 sudo: required
-
 services:
-  - docker
-
+- docker
 language: csharp
-
 mono: none
-
 dotnet: 2.0.0
-
 env:
   global:
-    - secure: Lav6GWq9I6B/NZP5O30ees47cqeIKXZCVoHqhgCoxOVoJqFB2ZzeTO8xHbU2rd1etMgyDOEV+wJzriPgjgONyhDgMAHnNYgqjtSVcbdmvl86Gl5pGeyfbkcAzuigoaL6mmUF2tHmHsxxtQwMZkuYB6JMQE1XBpy9wpjZIZpdDB29FCqdnxE8rv2UJsEwJsGIw/iLCcexYgoAkk4BXpNTYOvKRBysDG5mbZmHR83wcBPBI6bHP3OqpiWWXdpTR/ddsDkGhIR6FbaxPbIvb/5gPUwci2fHhH5S4bM3OidMSqX4Y2zirrGlUXSBrwZWZEU7MAL/O47Evr/d5GU+2MUhYh//HVO5qSeaR+aeuhn1+Bl9ybVNnsRzE2RaaeX3sShODgrQggTFPsHxiKHTPDdJ3pg6+tDqTa0eNeOmvCm4y1bmrYM5Rc6wkAyDXkd1ICAH1AcwFNXXDOXjNZyZiXxwBPft54z6pffCAoR9rCtG6XAPYYlslQ7EbwjYyFusUkDKEm0oelX5JH8EM7yEJAf4ezUZlbZN2mb3J4CGZ8AulG0xGjzp3y+8WS0PNUOzNZNlyYqdGUeGivVIUq5B131DjiSQlz9ZhHGnYEDvS71FdVxaQ96aybsIrC7PDzl3+jwBxo7zt6MzWqv00SbyLmtbCVITEWajSOprnkm7SSMuCW4= #CANISTER_PWD
-    - COMMIT=${TRAVIS_COMMIT::8}
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: Lav6GWq9I6B/NZP5O30ees47cqeIKXZCVoHqhgCoxOVoJqFB2ZzeTO8xHbU2rd1etMgyDOEV+wJzriPgjgONyhDgMAHnNYgqjtSVcbdmvl86Gl5pGeyfbkcAzuigoaL6mmUF2tHmHsxxtQwMZkuYB6JMQE1XBpy9wpjZIZpdDB29FCqdnxE8rv2UJsEwJsGIw/iLCcexYgoAkk4BXpNTYOvKRBysDG5mbZmHR83wcBPBI6bHP3OqpiWWXdpTR/ddsDkGhIR6FbaxPbIvb/5gPUwci2fHhH5S4bM3OidMSqX4Y2zirrGlUXSBrwZWZEU7MAL/O47Evr/d5GU+2MUhYh//HVO5qSeaR+aeuhn1+Bl9ybVNnsRzE2RaaeX3sShODgrQggTFPsHxiKHTPDdJ3pg6+tDqTa0eNeOmvCm4y1bmrYM5Rc6wkAyDXkd1ICAH1AcwFNXXDOXjNZyZiXxwBPft54z6pffCAoR9rCtG6XAPYYlslQ7EbwjYyFusUkDKEm0oelX5JH8EM7yEJAf4ezUZlbZN2mb3J4CGZ8AulG0xGjzp3y+8WS0PNUOzNZNlyYqdGUeGivVIUq5B131DjiSQlz9ZhHGnYEDvS71FdVxaQ96aybsIrC7PDzl3+jwBxo7zt6MzWqv00SbyLmtbCVITEWajSOprnkm7SSMuCW4=
+  - secure: T6EmlGf1aBdKab6uJijb98e80maBm6W6Ej/i5t+TnlLEDAWFmASwNWRcYWr8NUJ7UxsSxwsDIQXV1GjkQ+XTr9bRg7hWN56ItkqJ5Jjf+d66Xydo3ni+ttpF8om6KJPaz7mDrwL+H1wPjPF63oG8WpNkwXvK9YoSqBSFYyKYCfj5vO6kW0li71rc6a+lMa3tJsgenHewS66hfNPOhgYGChtiMPQYx1thNv39nloHNdnNnXoJ/dTNogEoSMckg7/YCg7cimuLY4VhkO75bhum1eme3SPYF95i2+jOBxNDhjwfneRb6zuzMyqU8X9bYtg9iNM09EDl9cAZl9qiuCrFwhBzx7RoFibBZSwdwHOOxMbXeRZGijo4tTTge/qXGp46NAnHhQZeuLlEEwGtOn8F84nEqjcEn0NcBY3NuZbZvA7ywIuaxsX2/O5Y0hhZfPBykzd4mq43zY/6SmM/x9I19wYMx9/yWxRl+3S3snpy1SnXUcgHZKCUmsrW+lN+kohO3oAtyilYumkddIDmF556WrQVZDLI2jMpZ6m/SXarT3MZzB0EF2FHVRyLh76y4nXLSEFV9A/o3nJxNrHjOPigYMbpgReBu879gSBuxgjDDYqEvnxqmk3ZC0oQOpgkTe71JCqM4/4Huuv63qaiHgacTM25QEKykWSNBSfIa4omXdw=
+  - secure: GFuVgGmC9FV1x9FBLR2ovNV1t9NUl9thVNpr9U2dMyXhRCtv9eYuoqR5vESd71ttS4hVYgztcoDto4DT2bTe2Rdel0o5TmQ0NC7WAVrPAoHOZirbsHENXIjeqn00hw4zFBpclpWS2w0UpsEumahiHP+rnPgaCn7j1Vozy4V15oTVMqD00VUBw3hwbyKEV5kkLwHVhdZwMxKegoBJ3hBlhyWEdTo2Sd+X4Hk4q9Gmgzv425E0fh+oDsxFnt+Qz6LekAwipVp7nC1h5g8sqY2amAJWpQA2TcPE/0PndNHTXsEPW7XU6ZmYPzPFU7vlWUQp0lPzxnMfS6wbRnp4jkz61AgAUey6q8Gy/FH02dkjw5hwQajGz2s/XIRMFJwIbnX+jHTNlxDRxDbmknu6E/FbMqGyCtNqvcNcC2yHMOB956a/kGP1w5Ums6VMrThH4E8gc0sGJ87DO751qpUwhS3sdoWkig9okgGl30vSGc4MzZnYw8CXv4olSUF56HfSE7iGw+kbldaGKxNL80/P934znHfgAgvhAWgXlSz6zdrmAp8EN/Cz+RD0Cyk8TFcduoKiuBi4b52cE3CpqdcOcr5kv69dqhHv/sijhP9HEtmgH6L4SkVgUyPQzzrjxbWjxPK0qi3QKEmEexBc6Nl0mNijTc7aP6ydqOewTjurD1jjqGE=
 script:
-  - dotnet restore
-  - dotnet build ./backend-aspnetcore2.0/
-
+- dotnet restore
+- dotnet build ./backend-aspnetcore2.0/
 after_success:
-  - cd backend-aspnetcore2.0
-  - docker login -u=crixo -p=$CANISTER_PWD cloud.canister.io:5000
-  - export REPO=woa-api
-  - export TAG=latest
-  #- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
-  - docker push cloud.canister.io:5000/crixo/$REPO:$TAG
+- cd backend-aspnetcore2.0
+- docker login -u=crixo -p=$CANISTER_PWD cloud.canister.io:5000
+- export REPO=woa-api
+- export TAG=latest
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
+- docker push cloud.canister.io:5000/crixo/$REPO:$TAG
+deploy:
+- export TAG=$REPO-heroku:$COMMIT
+- docker build -f heroku.Dockerfile -t $TAG .
+- docker tag $TAG registry.heroku.com/woa-api-sample/web
+- docker login --username=$HEROKUU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
+- docker push registry.heroku.com/woa-api-sample/web
