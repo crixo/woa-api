@@ -21,13 +21,15 @@ after_success:
 - docker build -f Dockerfile -t $REPO:$COMMIT .
 - docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
 - docker push cloud.canister.io:5000/crixo/$REPO:$TAG
-deploy:
-  provider: heroku
-  api_key:
-    secure: $HEROKU_AUTHTOKEN
-  run:
-    - export TAG=$REPO-heroku:$COMMIT
-    - docker build -f heroku.Dockerfile -t $TAG .
-    - docker tag $TAG registry.heroku.com/woa-api-sample/web
-    - docker login --username=$HEROKUU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
-    - docker push registry.heroku.com/woa-api-sample/web
+#- sh .travis/deploy_heroku.sh
+- export HEROKU_TAG=$REPO-heroku:$COMMIT
+- docker build -f heroku.Dockerfile -t $HEROKU_TAG .
+- docker tag $HEROKU_TAG registry.heroku.com/woa-api-sample/web
+- docker login --username=$HEROKUU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
+- docker push registry.heroku.com/woa-api-sample/web
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: $HEROKU_AUTHTOKEN
+#   app: woa-api-sample
+#   run:
