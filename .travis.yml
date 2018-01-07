@@ -25,7 +25,7 @@ after_success:
 - export HEROKU_TAG=$REPO-heroku:$COMMIT
 - docker build -f heroku.Dockerfile -t $HEROKU_TAG .
 - docker tag $HEROKU_TAG registry.heroku.com/woa-api-sample/web
-- docker login --username=$HEROKUU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
+- docker login --username=$HEROKU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
 - docker push registry.heroku.com/woa-api-sample/web
 # deploy:
 #   provider: heroku
