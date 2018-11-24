@@ -18,4 +18,7 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 COPY ./Data/woa-sample.db woa-sample.db
 #ENTRYPOINT ["dotnet", "Woa.Backend.dll"]
+
+ENV PORT=80
+
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet Woa.Backend.dll

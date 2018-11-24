@@ -16,4 +16,7 @@ FROM microsoft/aspnetcore:2.0
 ENV ASPNETCORE_ENVIRONMENT="Docker"
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Woa.Backend.dll"]
+
+ENV PORT=80
+
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Woa.Backend.dll

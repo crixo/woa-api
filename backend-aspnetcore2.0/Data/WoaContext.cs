@@ -20,6 +20,8 @@ namespace Woa.Data
         public DbSet<Trattamento> Trattamenti { get; set; }
         public DbSet<Valutazione> Valutazioni { get; set; }
 
+        public DbSet<Migration> Migrations { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,6 +44,8 @@ namespace Woa.Data
 
             modelBuilder.Entity<Trattamento>().ToTable("trattamento");
             modelBuilder.Entity<Valutazione>().ToTable("valutazione");
+
+            modelBuilder.Entity<Migration>().ToTable("wp_migration");
         }
     }
 }
