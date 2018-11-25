@@ -19,8 +19,8 @@ env:
   - secure: I5hxnowx5X7Q5DOAmgDvMONWyNt7xGo3tC5qMGlsSpEWLNNXLASDguWAH9qqW1m4iuQMACXGk9n2OSOfW1AIPu+mOGJuueMu0cPU9wB5pufwGtcFzNHmKm0e+WGkc2WsUzHWtIUpG0fRDHKS08bdrvUwkyHfiYhF+5y7VWUzDvGAPFJy2k40O/7pQtjYN5dIE5MHZm98v+nmgRoZ2KIuFq+Jr00uCo/K+JfxQiVdhlFus8GW7U8h40XjPaUwIl5znaRwffWUD8KXoYsRAwmUvu0glYd6/U0UomLjWfjD0oHBo+CxUIEiYbsRdtBCvpJqqzJFRMIxv4zNlteJD11g7THe2vDruHLK53GMqqp7mcrQHUOYCUCNiP2JcIrFp3AhenEilL80ifjRH36oWpKWXc0QsOLdvzDHG51hhPf/SkW+F65M9w6/clNh4vpztw2obqlhrvfyjSueZ1qtHGMA5qlfH6s0Jy4ezD+u9A+/xAN9y3P9ZOWDKL6aEy+eapy79/Cu4foZ5B6/A6Mh/zq3akAmVfgH9zoaFrEPtR9bpahRiGamGu3IeyAaWftcP7axrFtZyrfUbJU80fyKGW0BerQjWvDaBRVEYQo2aFXvL3vtUupbOpomMGLjSjQ0sOgmw1PDbkb/viow3LtJakQ/9QE4rmlmNYSp6JHof6MRIQA=
 before_install:
   - echo "TRAVIS_TAG = $TRAVIS_TAG - TRAVIS_BRANCH = $TRAVIS_BRANCH"
-  - echo "$HEROKU_AUTHTOKEN" | docker login -u --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
-  - echo "$GITLAB_PWD" | docker login -u --username=$GITLAB_USERNAME= --password-stdin registry.gitlab.com
+  - echo "$HEROKU_AUTHTOKEN" | docker login --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
+  - echo "$GITLAB_PWD" | docker login --username=$GITLAB_USERNAME= --password-stdin registry.gitlab.com
 install:
   - echo "skip install"
 before_script:
