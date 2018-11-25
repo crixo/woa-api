@@ -35,7 +35,9 @@ script:
 - docker build -f Dockerfile -t $BUILD_TAG .
 - cd .. && echo $PWD
 - docker tag $BUILD_TAG registry.heroku.com/$HEROKU_APP/web
+- docker push registry.heroku.com/$HEROKU_APP/web
 - docker tag $BUILD_TAG registry.gitlab.com/$GITLAB_USERNAME/$GITLAB_PRJ:$IMAGE_TAG
+- docker push registry.gitlab.com/$GITLAB_USERNAME/$GITLAB_PRJ:$IMAGE_TAG
 deploy:
   provider: script
   script: bash ./heroku-container-release.sh
