@@ -9,7 +9,8 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::8}
   - export CI=false
-  - export REPO=woa-api
+  - export HEROKU_APP=woa-api-sample
+  - export GITLAB_PRJ=woa-api
   - export IMAGE_TAG:latest
   - export BUILD_TAG=$REPO:$IMAGE_TAG
   - secure: p4yXFXVOtYdZ4RYneYwsGQsLqV8WS1N7UFzZh+cphNjDCQaOgXhlbXX6RtR5xdOd44aa1h6VuUehumoQ0t6exUp4a0yoepdHKyrJzIpfhulEw0a0CNCd1I2PkL82FaeUYZaP/UROk3AvKq8GSSxsWxtq6NbNyjhpW76DBvHnwr2XYCtLatsx9+mVDMrN3SyCtovZc6bf/wk8f4f1sNawc0qS9FOLME/tKmwRpK7R3MhKdTtfFC//QlfSHnwAq0deLqdrN1eXuhpnpquQ/B+lJ5fKKYF2ZFB6KqJdl4gIzKSVq1K6Z58NBFe5Kj6CeAfxvlrd6J4n9aBsQoSAlXH3yyln50M63b3tVRDVgs7pxDbOMab6fNETmK+RDJTKMd9HqORo1bGxUdksrJQ9d46/crQquYfWzu0HVpiPfQcG+s/QOCXSXZH4QvvgMsFOQ6SoO9yLf0k0PtmRuwaKNtqzHT9ZsOoUDdLtSpYMhRrGkCY4PFQFL9Z8ZbDl9OUZ5eiBO80fVi5NtEaaEDXGOkuTnLHquVJgoGAyEKcLOm1IMRk313sm2qdSBvz32hz1O9MsNMgneV4Tly1iri21ujUA2EftLp3aVF/Ge7o4K+pEj213HemV3RNCdw8s0auk7UHknpGS3cdcypaFmRGjvf7fhH4lOOppyr+YBvRr06F4k4w=
@@ -20,7 +21,7 @@ before_install:
 - echo "TRAVIS_TAG = ${TRAVIS_TAG} - TRAVIS_BRANCH = ${TRAVIS_BRANCH}"
 - echo "$HEROKU_AUTHTOKEN" | docker login --username=$HEROKU_USERNAME --password-stdin
   registry.heroku.com
-- echo "$GITLAB_PWD" | docker login --username=$GITLAB_USERNAME= --password-stdin
+- echo "$GITLAB_PWD" | docker login --username=$GITLAB_USERNAME --password-stdin
   registry.gitlab.com
 install:
 - echo "skip install"
@@ -28,8 +29,8 @@ before_script:
 - echo "skip before_script"
 script:
 - docker build -f Dockerfile -t $BUILD_TAG .
-- docker tag $BUILD_TAG registry.heroku.com/$REPO/web
-- docker tag $BUILD_TAG registry.gitlab.com/crixo/$REPO:$IMAGE_TAG
+- docker tag $BUILD_TAG registry.heroku.com/$HEROKU_APP/web
+- docker tag $BUILD_TAG registry.gitlab.com/crixo/$GITLAB_PRJ:$IMAGE_TAG
 deploy:
   provider: script
   script: bash ./heroku-container-release.sh
