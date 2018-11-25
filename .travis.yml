@@ -1,35 +1,37 @@
 sudo: required
+dist: trusty
+language: node_js
+node_js:
+- '9.0'
 services:
 - docker
-language: csharp
-mono: none
-dotnet: 2.0.0
 env:
   global:
   - COMMIT=${TRAVIS_COMMIT::8}
+  - export CI=false
+  - export REPO=woa-api
+  - export IMAGE_TAG:latest
+  - export BUILD_TAG=$REPO:$IMAGE_TAG
   - secure: Lav6GWq9I6B/NZP5O30ees47cqeIKXZCVoHqhgCoxOVoJqFB2ZzeTO8xHbU2rd1etMgyDOEV+wJzriPgjgONyhDgMAHnNYgqjtSVcbdmvl86Gl5pGeyfbkcAzuigoaL6mmUF2tHmHsxxtQwMZkuYB6JMQE1XBpy9wpjZIZpdDB29FCqdnxE8rv2UJsEwJsGIw/iLCcexYgoAkk4BXpNTYOvKRBysDG5mbZmHR83wcBPBI6bHP3OqpiWWXdpTR/ddsDkGhIR6FbaxPbIvb/5gPUwci2fHhH5S4bM3OidMSqX4Y2zirrGlUXSBrwZWZEU7MAL/O47Evr/d5GU+2MUhYh//HVO5qSeaR+aeuhn1+Bl9ybVNnsRzE2RaaeX3sShODgrQggTFPsHxiKHTPDdJ3pg6+tDqTa0eNeOmvCm4y1bmrYM5Rc6wkAyDXkd1ICAH1AcwFNXXDOXjNZyZiXxwBPft54z6pffCAoR9rCtG6XAPYYlslQ7EbwjYyFusUkDKEm0oelX5JH8EM7yEJAf4ezUZlbZN2mb3J4CGZ8AulG0xGjzp3y+8WS0PNUOzNZNlyYqdGUeGivVIUq5B131DjiSQlz9ZhHGnYEDvS71FdVxaQ96aybsIrC7PDzl3+jwBxo7zt6MzWqv00SbyLmtbCVITEWajSOprnkm7SSMuCW4=
   - secure: T6EmlGf1aBdKab6uJijb98e80maBm6W6Ej/i5t+TnlLEDAWFmASwNWRcYWr8NUJ7UxsSxwsDIQXV1GjkQ+XTr9bRg7hWN56ItkqJ5Jjf+d66Xydo3ni+ttpF8om6KJPaz7mDrwL+H1wPjPF63oG8WpNkwXvK9YoSqBSFYyKYCfj5vO6kW0li71rc6a+lMa3tJsgenHewS66hfNPOhgYGChtiMPQYx1thNv39nloHNdnNnXoJ/dTNogEoSMckg7/YCg7cimuLY4VhkO75bhum1eme3SPYF95i2+jOBxNDhjwfneRb6zuzMyqU8X9bYtg9iNM09EDl9cAZl9qiuCrFwhBzx7RoFibBZSwdwHOOxMbXeRZGijo4tTTge/qXGp46NAnHhQZeuLlEEwGtOn8F84nEqjcEn0NcBY3NuZbZvA7ywIuaxsX2/O5Y0hhZfPBykzd4mq43zY/6SmM/x9I19wYMx9/yWxRl+3S3snpy1SnXUcgHZKCUmsrW+lN+kohO3oAtyilYumkddIDmF556WrQVZDLI2jMpZ6m/SXarT3MZzB0EF2FHVRyLh76y4nXLSEFV9A/o3nJxNrHjOPigYMbpgReBu879gSBuxgjDDYqEvnxqmk3ZC0oQOpgkTe71JCqM4/4Huuv63qaiHgacTM25QEKykWSNBSfIa4omXdw=
   - secure: GFuVgGmC9FV1x9FBLR2ovNV1t9NUl9thVNpr9U2dMyXhRCtv9eYuoqR5vESd71ttS4hVYgztcoDto4DT2bTe2Rdel0o5TmQ0NC7WAVrPAoHOZirbsHENXIjeqn00hw4zFBpclpWS2w0UpsEumahiHP+rnPgaCn7j1Vozy4V15oTVMqD00VUBw3hwbyKEV5kkLwHVhdZwMxKegoBJ3hBlhyWEdTo2Sd+X4Hk4q9Gmgzv425E0fh+oDsxFnt+Qz6LekAwipVp7nC1h5g8sqY2amAJWpQA2TcPE/0PndNHTXsEPW7XU6ZmYPzPFU7vlWUQp0lPzxnMfS6wbRnp4jkz61AgAUey6q8Gy/FH02dkjw5hwQajGz2s/XIRMFJwIbnX+jHTNlxDRxDbmknu6E/FbMqGyCtNqvcNcC2yHMOB956a/kGP1w5Ums6VMrThH4E8gc0sGJ87DO751qpUwhS3sdoWkig9okgGl30vSGc4MzZnYw8CXv4olSUF56HfSE7iGw+kbldaGKxNL80/P934znHfgAgvhAWgXlSz6zdrmAp8EN/Cz+RD0Cyk8TFcduoKiuBi4b52cE3CpqdcOcr5kv69dqhHv/sijhP9HEtmgH6L4SkVgUyPQzzrjxbWjxPK0qi3QKEmEexBc6Nl0mNijTc7aP6ydqOewTjurD1jjqGE=
+  - secure: dKC932F6HHwkCRrfHVpTC0DRxeLl7iQHLuhGAD/gMBkUwX7B+29k0XERUY/R7AednPUNwjyvbLkojjv3HNfBNMoapG+23uAUpmZ/GcoqJgA/gWlJzSdV/jFvtgjsin3nfLeTAP6ZI/0DRhhJzudDr3YpCQ2fFjjJh2ptGD2h/KXJNSVrAtqA9741xxSEcCMZINFKPyq0f4GJiqOknuJtquFzlyZ1xnXJXtN2y9w4sVCcCV3pUwWCCkR1np+jTq7aZzrbO/cfnj3iiO8ntxux19Nb5mTXPpdwri0UVQzNiLVgpR2U+X+qe5drqedO0rQ40GhRTU2UliIavNtP3ycpEJXQEWT4UARL0oIJmE+FXcOOZVeaiQYrxhk/Mm/zl0Z9xUKWYxFaE7parKhoVplWprS5BDo9LuSEWEbupqNdHZgJMKRq58ApG6WSX3QtX4lojg6NEdBuy/amnOGhChFZ/sTG8WCvvN0DsyKOonjfBuAcz65sv/hLOdzp32X0rw8FuddSneV55wI23hZ6vBBnzuelUWppymvF3pbS2jmgegB1QuTl900cAamCYorFnm9TzLLVqUbRg2WthGciN3KfwdcFXN90KwqHOnhR1x6okgd2/Div8z3iJ2obY64e3CT+0giALBI6+ki7hCCbhczujLvD2doxRBii7i2FQiCYvU8=
+  - secure: I5hxnowx5X7Q5DOAmgDvMONWyNt7xGo3tC5qMGlsSpEWLNNXLASDguWAH9qqW1m4iuQMACXGk9n2OSOfW1AIPu+mOGJuueMu0cPU9wB5pufwGtcFzNHmKm0e+WGkc2WsUzHWtIUpG0fRDHKS08bdrvUwkyHfiYhF+5y7VWUzDvGAPFJy2k40O/7pQtjYN5dIE5MHZm98v+nmgRoZ2KIuFq+Jr00uCo/K+JfxQiVdhlFus8GW7U8h40XjPaUwIl5znaRwffWUD8KXoYsRAwmUvu0glYd6/U0UomLjWfjD0oHBo+CxUIEiYbsRdtBCvpJqqzJFRMIxv4zNlteJD11g7THe2vDruHLK53GMqqp7mcrQHUOYCUCNiP2JcIrFp3AhenEilL80ifjRH36oWpKWXc0QsOLdvzDHG51hhPf/SkW+F65M9w6/clNh4vpztw2obqlhrvfyjSueZ1qtHGMA5qlfH6s0Jy4ezD+u9A+/xAN9y3P9ZOWDKL6aEy+eapy79/Cu4foZ5B6/A6Mh/zq3akAmVfgH9zoaFrEPtR9bpahRiGamGu3IeyAaWftcP7axrFtZyrfUbJU80fyKGW0BerQjWvDaBRVEYQo2aFXvL3vtUupbOpomMGLjSjQ0sOgmw1PDbkb/viow3LtJakQ/9QE4rmlmNYSp6JHof6MRIQA=
+before_install:
+  - echo "TRAVIS_TAG = $TRAVIS_TAG - TRAVIS_BRANCH = $TRAVIS_BRANCH"
+  - echo "$HEROKU_AUTHTOKEN" | docker login -u --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
+  - echo "$GITLAB_PWD" | docker login -u --username=$GITLAB_USERNAME= --password-stdin registry.gitlab.com
+install:
+  - echo "skip install"
+before_script:
+  - echo "skip before_script"
 script:
-- dotnet restore
-- dotnet build ./backend-aspnetcore2.0/
-after_success:
-- cd backend-aspnetcore2.0
-- docker login -u=crixo -p=$CANISTER_PWD cloud.canister.io:5000
-- export REPO=woa-api
-- export TAG=latest
-- docker build -f Dockerfile -t $REPO:$COMMIT .
-- docker tag $REPO:$COMMIT cloud.canister.io:5000/crixo/$REPO:$TAG
-- docker push cloud.canister.io:5000/crixo/$REPO:$TAG
-#- sh .travis/deploy_heroku.sh
-- export HEROKU_TAG=$REPO-heroku:$COMMIT
-- docker build -f heroku.Dockerfile -t $HEROKU_TAG .
-- docker tag $HEROKU_TAG registry.heroku.com/woa-api-sample/web
-- docker login --username=$HEROKU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
-- docker push registry.heroku.com/woa-api-sample/web
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: $HEROKU_AUTHTOKEN
-#   app: woa-api-sample
-#   run:
+  - docker build -f Dockerfile -t $BUILD_TAG .
+  - docker tag $BUILD_TAG registry.heroku.com/$REPO/web
+  - docker tag $BUILD_TAG registry.gitlab.com/crixo/$REPO:$IMAGE_TAG
+deploy:
+  provider: script
+  script: bash ./heroku-container-release.sh
+  on:
+    branch: master
+
