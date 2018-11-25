@@ -29,7 +29,7 @@ install:
 before_script:
 - echo "skip before_script"
 script:
-- docker build -f Dockerfile -t $BUILD_TAG ./backend-aspnetcore2.0
+- docker build -f Dockerfile -t $BUILD_TAG .
 - docker tag $BUILD_TAG registry.heroku.com/$HEROKU_APP/web
 - docker tag $BUILD_TAG registry.gitlab.com/$GITLAB_USERNAME/$GITLAB_PRJ:$IMAGE_TAG
 deploy:
