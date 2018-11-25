@@ -34,7 +34,7 @@ namespace Woa.Controllers
 
             var scriptsFolderPath = Path.Combine(_env.ContentRootPath, "Data", "scripts");
 
-            var filePaths = Directory.GetFiles(scriptsFolderPath);
+            var filePaths = Directory.GetFiles(scriptsFolderPath).OrderBy(f=>f);
 
             this.Logger.LogDebug("scriptsFolderPath: {0}", scriptsFolderPath);
 
@@ -43,22 +43,15 @@ namespace Woa.Controllers
 
             try
             {
+                var migrationTableScript = "CREATE TABLE IF NOT EXISTS [wp_migration] ([name] nvarchar(50) PRIMARY KEY, [created_at_utc] DATETIME DEFAULT CURRENT_TIMESTAMP);";
+                Context.Database.ExecuteSqlCommand(migrationTableScript);
 
                 foreach (var path in filePaths)
                 {
                     var scriptName = Path.GetFileName(path);
                     this.Logger.LogDebug("scriptName: {0}", scriptName);
 
-                    Migration executedMigration = null;
-                    try
-                    {
-                        executedMigration = Context.Migrations.SingleOrDefault<Migration>(x=>x.Name == scriptName);
-                    }
-                    catch(Exception exc)
-                    {
-                        this.Logger.LogWarning(exc.ToString());
-                    }
-
+                    Migration executedMigration = Context.Migrations.SingleOrDefault<Migration>(x=>x.Name == scriptName);
 
                     if (executedMigration == null)
                     {

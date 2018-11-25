@@ -13,9 +13,11 @@ RUN dotnet publish -c Release -o out
 FROM microsoft/aspnetcore:2.0
 # Set ASP.NET Core environment variables
 #ENV ASPNETCORE_URLS="http://*:5000"
-ENV ASPNETCORE_ENVIRONMENT="Docker"
+ENV ASPNETCORE_ENVIRONMENT="DockerSample"
 WORKDIR /app
 COPY --from=build-env /app/out .
+COPY ./Data/woa-sample.db ./woa-sample.db
+COPY ./Data/scripts ./Data/scripts
 
 ENV PORT=80
 
