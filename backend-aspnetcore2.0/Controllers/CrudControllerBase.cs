@@ -36,6 +36,21 @@ namespace Woa.Controllers
             }
         }
 
+        protected IActionResult StoreAndReturnContract<TEntity>(TEntity entity, EntityState state) where TEntity : class, Models.IEntity
+        {
+            try
+            {
+                Context.Entry(entity).State = state;
+                Context.SaveChanges();
+                return Ok(entity.ToContract());
+            }
+            catch (Exception exp)
+            {
+                Logger.LogError(exp.Message);
+                return BadRequest(new ApiResponse { Status = false, ErrorMessage = exp.Message });
+            }
+        }
+
 
         protected void Remove<TEntity>(TEntity entity) where TEntity : class
         {

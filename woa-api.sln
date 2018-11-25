@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woa.Backend", "backend-aspnetcore2.0\Woa.Backend.csproj", "{A30C63D1-32C5-451E-AE26-35113043C5EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woa.Backend.Tests", "Woa.Backend.Tests\Woa.Backend.Tests.csproj", "{CABEC363-E1A3-4F1A-BCF7-401D9F10647A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{A30C63D1-32C5-451E-AE26-35113043C5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30C63D1-32C5-451E-AE26-35113043C5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30C63D1-32C5-451E-AE26-35113043C5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CABEC363-E1A3-4F1A-BCF7-401D9F10647A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CABEC363-E1A3-4F1A-BCF7-401D9F10647A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CABEC363-E1A3-4F1A-BCF7-401D9F10647A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CABEC363-E1A3-4F1A-BCF7-401D9F10647A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

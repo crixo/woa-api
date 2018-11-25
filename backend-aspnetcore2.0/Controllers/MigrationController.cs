@@ -14,13 +14,13 @@ using System.Data.SqlClient;
 namespace Woa.Controllers
 {
     [Route("api/migrations")]
-    public class MigrationController : CrudControllerBase<ConsultiController>
+    public class MigrationController : CrudControllerBase<MigrationController>
     {
         private readonly IHostingEnvironment _env;
 
         public MigrationController(
             IHostingEnvironment env,
-            WoaContext context, ILogger<ConsultiController> logger)
+            WoaContext context, ILogger<MigrationController> logger)
             : base(context, logger) {
             this._env = env;
         }
